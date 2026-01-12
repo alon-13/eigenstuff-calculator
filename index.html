@@ -5,9 +5,10 @@
     <style>
         body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
         .matrix-grid { display: grid; gap: 5px; margin-bottom: 20px; min-height: 50px; }
-        input { width: 50px; padding: 5px; text-align: center; }
-        .result-item { background: #f4f4f4; padding: 10px; margin-top: 10px; border-radius: 5px; }
-        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; }
+        input { width: 60px; padding: 8px; text-align: center; border: 1px solid #ccc; border-radius: 4px; }
+        .result-item { background: #f4f4f4; padding: 15px; margin-top: 10px; border-radius: 5px; border-left: 5px solid #007bff; }
+        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
@@ -31,12 +32,13 @@
             const size = document.getElementById('size').value;
             const container = document.getElementById('matrix-container');
             container.innerHTML = '';
-            container.style.gridTemplateColumns = `repeat(${size}, 60px)`;
+            container.style.gridTemplateColumns = `repeat(${size}, 70px)`;
             
             for (let i = 0; i < size * size; i++) {
                 const input = document.createElement('input');
                 input.type = 'number';
                 input.value = '0';
+                input.step = "any";
                 input.className = 'matrix-input';
                 container.appendChild(input);
             }
@@ -47,7 +49,6 @@
             const inputs = document.querySelectorAll('.matrix-input');
             const matrix = [];
             
-            // Convert flat list of inputs into 2D array
             for (let i = 0; i < size; i++) {
                 const row = [];
                 for (let j = 0; j < size; j++) {
@@ -57,12 +58,10 @@
             }
 
             try {
-             // This will automatically point to whatever domain the page is hosted on
-const response = await fetch('/compute', { 
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ matrix })
-});
+                const response = await fetch('/compute', { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ matrix })
                 });
                 
                 const data = await response.json();
@@ -80,19 +79,15 @@ const response = await fetch('/compute', {
             results.forEach((item, index) => {
                 div.innerHTML += `
                     <div class="result-item">
-                        <strong>λ${index + 1}:</strong> ${item.eigenvalue} <br>
+                        <strong>Eigenvalue (λ${index + 1}):</strong> ${item.eigenvalue} <br>
                         <strong>Basis Vector:</strong> [${item.eigenvector.join(', ')}]
                     </div>`;
             });
         }
 
-        // Replace createGrid(); with this:
-window.addEventListener('DOMContentLoaded', (event) => {
-    createGrid();
-});
+        // Initialize grid on load
+        window.addEventListener('DOMContentLoaded', createGrid);
     </script>
 </body>
 </html>
-
-
 
