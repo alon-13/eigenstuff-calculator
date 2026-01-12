@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
     <title>Eigenstuff Calculator</title>
-    <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-        .matrix-grid { display: grid; gap: 5px; margin-bottom: 20px; min-height: 50px; }
-        input { width: 60px; padding: 8px; text-align: center; border: 1px solid #ccc; border-radius: 4px; }
-        .result-item { background: #f4f4f4; padding: 15px; margin-top: 10px; border-radius: 5px; border-left: 5px solid #007bff; }
-        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; }
-        button:hover { background: #0056b3; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <h2>Eigenstuff Calculator</h2>
+    <p>This calculator will find the eigenvalues and eigenvectors of the given matrix. </p>
     <p>Select Size (n x n): 
         <select id="size" onchange="createGrid()">
             <option value="2">2x2</option>
@@ -88,6 +84,27 @@
         // Initialize grid on load
         window.addEventListener('DOMContentLoaded', createGrid);
     </script>
+
+    <div class="reference-card">
+    <img src="jp.jpg" alt="Linear Algebra Professor">
+    <h4>Video Reference</h4>
+    <p>Math 206 | Eigenvalues and Eigenvectors</p>
+    <a href="https://youtu.be/ElUQ6I8eDj4" target="_blank">
+        Watch Tutorial
+    </a>
+    </div>
+
+     <!-- added -->
+    <footer id="footer">
+        <div class ="footer-content">
+            <div class ="footerBox">
+                <h3>About us</h3>
+                <p>
+                    Group 9 | BSCS 2-3
+                </p>
+            </div>
+    </footer>
 </body>
 </html>
+
 
