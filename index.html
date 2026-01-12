@@ -57,10 +57,12 @@
             }
 
             try {
-                const response = await fetch('https://eigenstuff-calculator.onrender.com/compute', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ matrix })
+             // This will automatically point to whatever domain the page is hosted on
+const response = await fetch('/compute', { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ matrix })
+});
                 });
                 
                 const data = await response.json();
@@ -88,3 +90,4 @@
     </script>
 </body>
 </html>
+
