@@ -4,7 +4,7 @@
     <title>Eigenstuff Calculator</title>
     <style>
         body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-        .matrix-grid { display: grid; gap: 5px; margin-bottom: 20px; }
+        .matrix-grid { display: grid; gap: 5px; margin-bottom: 20px; min-height: 50px; }
         input { width: 50px; padding: 5px; text-align: center; }
         .result-item { background: #f4f4f4; padding: 10px; margin-top: 10px; border-radius: 5px; }
         button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; }
@@ -86,9 +86,13 @@ const response = await fetch('/compute', {
             });
         }
 
-        createGrid(); // Initialize
+        // Replace createGrid(); with this:
+window.addEventListener('DOMContentLoaded', (event) => {
+    createGrid();
+});
     </script>
 </body>
 </html>
+
 
 
