@@ -1,9 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory # Added send_from_directory
 from flask_cors import CORS
 import numpy as np
+import os
 
-app = Flask(__name__)
-CORS(app)  # Allows the frontend to talk to the backend
+app = Flask(__name__, static_folder='.') # Tell Flask to look in the current folder
+CORS(app)
+
+# ADD THIS ROUTE:
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
 
 @app.route('/compute', methods=['POST'])
 def compute():
@@ -36,3 +42,4 @@ def compute():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
