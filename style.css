@@ -31,6 +31,11 @@ h2 {
     text-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+h2:hover {
+    transform: scale(1.08);
+    color: #ff6ec4; 
+}
+
 p {
     margin-bottom: 15px;
     font-size: 1.05rem;
@@ -220,6 +225,43 @@ button:active {
     transform: scale(1.08);
     box-shadow: 0 8px 18px rgba(0,0,0,0.4);
 }
+
+.members-card {
+    position: fixed;
+    right: 20px;
+    bottom: 420px; 
+    width: 220px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+    z-index: 9999;
+}
+
+.members-card p {
+    font-size: 0.90rem;
+    color: #eee;
+    margin-bottom: 10px;
+}
+
+.members-cardh4 {
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.members-card h4:hover {
+    transform: scale(1.08);
+    color: #dd2476; 
+} 
+
+.members-card p:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+    color: yellow; 
+} 
 
 @keyframes floatIn {
     from {
