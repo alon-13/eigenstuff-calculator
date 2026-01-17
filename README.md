@@ -53,9 +53,11 @@ Open the index.html file in your preferred web browser.
 ###  5. User Interface Guide
 Matrix Input Area: A dynamic grid where you can type your numerical values.
 
+Fill with Example: Use pre-set example values to test the app.
+
 Select Size: Click the dropdown menu to choose a matrix size from 2x2 up to 5x5. The grid updates automatically.
 
-Compute Button: Press the blue "Compute" button to send your data to the Python engine.
+Compute Button: Press the green "Compute Eigenvalues and Eigenspaces" button to send your data to the Python engine.
 
 Output Section: Results appear below the button in gray boxes, showing the calculated Eigenvalues (λ) and the Basis Vectors for each Eigenspace.
 
