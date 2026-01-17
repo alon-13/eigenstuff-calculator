@@ -1,7 +1,7 @@
 # eigenstuff-calculator
 
 
-# Eigenstuff Calculator 🧮
+# Eigenstuff Calculator 
 
 ###  Project Overview
 The **Eigenstuff Calculator** is a full-stack web application developed as a specialized Linear Algebra tool to streamline the calculation of eigenvalues and their corresponding eigenspace bases. Designed for academic use, the program solves the characteristic equation $\det(A - \lambda I) = 0$ for any square matrix up to a $5 \times 5$ dimension, providing a user-friendly alternative to tedious manual computations. By integrating a Python-based mathematical engine with a responsive web interface, the application allows students and educators to input matrix values through a dynamic grid and receive instant, accurate results rounded to whole numbers. This tool effectively bridges the gap between complex theoretical concepts and practical computation, making the exploration of linear transformations more accessible.
