@@ -1,8 +1,58 @@
 # eigenstuff-calculator
 
 
+# Eigenstuff Calculator
+
 ## Project Overview
 
-What this is: A full-stack web application designed to simplify complex Linear Algebra computations.Brief description: The Eigenstuff Calculator is a cloud-hosted tool that provides a user-friendly interface for matrix operations, backed by a powerful Python mathematical engine.
+**What this is:**  
+A full-stack web application designed to simplify complex Linear Algebra computations.
 
-Problem it solves: Manually calculating eigenvalues and eigenspaces for matrices larger than $2 \times 2$ is time-consuming and prone to arithmetic errors. This tool automates the process with high precision.What the program computes: It solves the characteristic equation $\det(A - \lambda I) = 0$ to find eigenvalues and determines the basis vectors for the corresponding eigenspaces.Example Content: For an input matrix of $[[2, 0], [0, 2]]$, the application correctly identifies a single eigenvalue of $2$ and its associated basis vectors $[1, 0]$ and $[0, 1]$.2️⃣ System RequirementsUser Needs: A modern web browser (Chrome, Firefox, Safari, or Edge) and an active internet connection to access the public URL.Python Version: Python 3.8 or higher (required for local development/hosting).Required Libraries: * NumPy: For core linear algebra computations.Flask: To serve the web application.Flask-CORS: To handle cross-origin requests.Gunicorn: To run the production server on Render.OS Compatibility: Fully cross-platform (Windows, macOS, Linux, Android, iOS) because it runs in a browser.3️⃣ Installation / SetupCloning the Project: Download the source files (app.py, index.html, requirements.txt, and Procfile) from your GitHub repository.Installing Dependencies: Run the command pip install -r requirements.txt in your terminal to install all necessary Python packages at once.Folder Structure: * /eigenstuff-calculator* app.py (Backend logic)* index.html (Frontend UI)* requirements.txt (Package list)* Procfile (Deployment instructions)4️⃣ How to Run the ProgramLocally: 1.  Open your terminal/command prompt.2.  Navigate to the project folder.3.  Execute python app.py.4.  Open index.html in your browser.Publicly: Simply visit your Render URL: https://eigenstuff-calculator.onrender.com.Startup Behavior: Upon visiting the site, the Python backend initializes, and the frontend automatically generates a default $2 \times 2$ input grid.5️⃣ User Interface GuideMatrix Input Area: A dynamic grid where you can type numbers. By default, it starts as $2 \times 2$.Select Size: Use the dropdown menu to change the dimensions (up to $5 \times 5$). The grid will update instantly.Compute Button: A blue button below the grid. Click this to send your matrix to the server for calculation.Results Section: Displays the calculated eigenvalues ($\lambda$) and their corresponding Basis Vectors in clear, rounded whole numbers.Quick Steps:Enter your values into the white boxes.Press the "Compute" button.Review the results that appear in the gray boxes at the bottom.
+**Brief description:**  
+The Eigenstuff Calculator is a cloud-hosted tool that provides a user-friendly interface for matrix operations, backed by a powerful Python mathematical engine.
+
+**Problem it solves:**  
+Manually calculating eigenvalues and eigenspaces for matrices larger than $2 \times 2$ is time-consuming and prone to arithmetic errors. This tool automates the process with high precision.
+
+**What the program computes:**  
+It solves the characteristic equation:
+
+$$
+\det(A - \lambda I) = 0
+$$
+
+to find eigenvalues and determines the basis vectors for the corresponding eigenspaces.
+
+**Example Content:**  
+For an input matrix of `[[2, 0], [0, 2]]`, the application correctly identifies a single eigenvalue of `2` and its associated basis vectors `[1, 0]` and `[0, 1]`.
+
+---
+
+##  System Requirements
+
+**User Needs:**  
+- A modern web browser (Chrome, Firefox, Safari, or Edge)  
+- An active internet connection to access the public URL
+
+**Python Version:**  
+- Python 3.8 or higher (required for local development/hosting)
+
+**Required Libraries:**  
+- `NumPy`: For core linear algebra computations  
+- `Flask`: To serve the web application  
+- `Flask-CORS`: To handle cross-origin requests  
+- `Gunicorn`: To run the production server on Render
+
+**OS Compatibility:**  
+- Fully cross-platform (Windows, macOS, Linux, Android, iOS) because it runs in a browser
+
+---
+
+## Installation / Setup
+
+**Cloning the Project:**  
+Download the source files (`app.py`, `index.html`, `requirements.txt`, `Procfile`) from your GitHub repository.
+
+**Installing Dependencies:**  
+```bash
+pip install -r requirements.txt
