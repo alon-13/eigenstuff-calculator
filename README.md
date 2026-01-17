@@ -1,81 +1,60 @@
 # eigenstuff-calculator
 
 
-# Eigenstuff Calculator
+# Eigenstuff Calculator 🧮
 
-##  Project Overview
-**What this is:** A full-stack web application designed to simplify complex Linear Algebra computations.  
-**Brief description:** The Eigenstuff Calculator is a cloud-hosted tool that provides a user-friendly interface for matrix operations, backed by a powerful Python mathematical engine.  
-**Problem it solves:** Manually calculating eigenvalues and eigenspaces for matrices larger than $2 \times 2$ is time-consuming and prone to arithmetic errors. This tool automates the process with high precision.  
-**What the program computes:** It solves the characteristic equation:
+###  Project Overview
+The **Eigenstuff Calculator** is a full-stack web application developed as a specialized Linear Algebra tool to streamline the calculation of eigenvalues and their corresponding eigenspace bases. Designed for academic use, the program solves the characteristic equation $\det(A - \lambda I) = 0$ for any square matrix up to a $5 \times 5$ dimension, providing a user-friendly alternative to tedious manual computations. By integrating a Python-based mathematical engine with a responsive web interface, the application allows students and educators to input matrix values through a dynamic grid and receive instant, accurate results rounded to whole numbers. This tool effectively bridges the gap between complex theoretical concepts and practical computation, making the exploration of linear transformations more accessible.
 
-$$
-\det(A - \lambda I) = 0
-$$
+---
 
-to find eigenvalues and determines the basis vectors for the corresponding eigenspaces.  
-**Example Content:** For an input matrix of `[[2, 0], [0, 2]]`, the application correctly identifies a single eigenvalue of `2` and its associated basis vectors `[1, 0]` and `[0, 1]`.
+###  System Requirements
+* **User Needs:** A modern web browser (Chrome, Firefox, Safari, or Edge) and an active internet connection.
+* **Python Version:** Python 3.8 or higher (for local development).
+* **Required Libraries:** * `NumPy`: For core linear algebra computations.
+    * `Flask`: To serve the web application.
+    * `Flask-CORS`: To handle cross-origin requests.
+    * `Gunicorn`: To run the production server on Render.
+* **OS Compatibility:** Fully cross-platform (Windows, macOS, Linux, Android, iOS) as it is a web-based tool.
 
-##  System Requirements
-**User Needs:** A modern web browser (Chrome, Firefox, Safari, or Edge) and an active internet connection to access the public URL.  
-**Python Version:** Python 3.8 or higher (required for local development/hosting).  
-**Required Libraries:** `NumPy` (for core linear algebra computations), `Flask` (to serve the web application), `Flask-CORS` (to handle cross-origin requests), `Gunicorn` (to run the production server on Render).  
-**OS Compatibility:** Fully cross-platform (Windows, macOS, Linux, Android, iOS) because it runs in a browser.
+---
 
-##  Installation / Setup
-**Cloning the Project:** Download the source files (`app.py`, `index.html`, `requirements.txt`, `Procfile`) from your GitHub repository.  
-**Installing Dependencies:**
-```bash
-pip install -r requirements.txt
+###  Installation / Setup
+To prepare the program for local use:
+1. **Clone the Project:** Download the source files (`app.py`, `index.html`, `requirements.txt`, and `Procfile`) from this repository.
+2. **Install Dependencies:** Open your terminal in the project folder and run:
+   ```bash
+   pip install -r requirements.txt
 Folder Structure:
 
-bash
-Copy code
-/eigenstuff-calculator
-├── app.py           # Backend logic
-├── index.html       # Frontend UI
-├── requirements.txt # Package list
-└── Procfile         # Deployment instructions
- How to Run the Program
-Locally:
+app.py: Backend Flask server & mathematical logic.
 
-Open your terminal/command prompt
+index.html: Frontend user interface & JavaScript.
 
-Navigate to the project folder
+requirements.txt: List of Python dependencies.
 
-Execute the following command:
+Procfile: Instructions for cloud deployment.
 
-bash
-Copy code
-python app.py
-Open index.html in your browser
+### How to Run the Program
+To run locally:
 
-Publicly:
+Open your terminal or command prompt.
 
-Visit the deployed Render URL: https://eigenstuff-calculator.onrender.com
+Navigate to the project directory.
 
-Startup Behavior:
+Execute the command: python app.py
 
-Upon visiting the site, the Python backend initializes
+Open the index.html file in your preferred web browser.
 
-The frontend automatically generates a default $n \times n$ input grid
+To access the live version: Visit the public URL: https://eigenstuff-calculator.onrender.com (Note: If the site takes a moment to load, the free server is simply "waking up").
 
- User Interface Guide
-Matrix Input Area: A dynamic grid where you can type numbers. Default size: $n \times n$.
-Select Size: Use the dropdown menu to change dimensions (up to $5 \times 5$). The grid updates instantly.
-Compute Button: A blue button below the grid. Click to send your matrix to the server for calculation.
-Results Section: Displays calculated eigenvalues ($\lambda$) and their corresponding basis vectors. Values are rounded to whole numbers for clarity.
+###  User Interface Guide
+Matrix Input Area: A dynamic grid where you can type your numerical values.
 
-Quick Steps:
+Select Size: Click the dropdown menu to choose a matrix size from 2x2 up to 5x5. The grid updates automatically.
 
-Enter your values into the white boxes
+Compute Button: Press the blue "Compute" button to send your data to the Python engine.
 
-Press the Compute button
+Output Section: Results appear below the button in gray boxes, showing the calculated Eigenvalues (λ) and the Basis Vectors for each Eigenspace.
 
-Review the results in the gray boxes at the bottom
-**Cloning the Project:**  
-Download the source files (`app.py`, `index.html`, `requirements.txt`, `Procfile`) from your GitHub repository.
-
-**Installing Dependencies:**  
-```bash
-pip install -r requirements.txt
+Simple Steps: 1. Enter your matrix values. 2. Click the "Compute" button. 3. Review the results displayed at the bottom.
