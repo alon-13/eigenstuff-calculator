@@ -4,23 +4,139 @@
     <meta charset="UTF-8">
     <title>Eigenstuff Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Additional styles specific to this page */
+        .matrix-grid {
+            display: grid;
+            gap: 5px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .matrix-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .eigenspace-result {
+            background-color: white;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .eigenvalue-title {
+            background-color: #e8f5e8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .basis-vector-display {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .rref-section {
+            background-color: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .matrix-display {
+            font-family: 'Courier New', monospace;
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .verification-box {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        .button-group {
+            margin: 20px 0;
+        }
+        
+        .button-group button {
+            margin: 0 5px;
+        }
+        
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .summary-box {
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        details {
+            margin: 10px 0;
+        }
+        
+        summary {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        summary:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <h2>Eigen-stuff Calculator</h2>
-    <p>This calculator finds eigenvalues and basis vectors of a square matrix.</p>
+    <p>This calculator finds eigenvalues and eigenvectors of a square matrix using the RREF method for eigenspace computation.</p>
 
     <p>Select Size (n x n): 
         <select id="size" onchange="createGrid()">
             <option value="2">2x2</option>
-            <option value="3">3x3</option>
+            <option value="3" selected>3x3</option>
             <option value="4">4x4</option>
             <option value="5">5x5</option>
         </select>
     </p>
 
+    <h3>Enter Matrix:</h3>
     <div id="matrix-container" class="matrix-grid"></div>
-    <button onclick="calculate()">Compute</button>
+    
+    <div class="button-group">
+        <button onclick="fillExample()">Fill with Example</button>
+        <button onclick="clearMatrix()">Clear</button>
+        <button onclick="calculate()">Compute</button>
+    </div>
+
+    <div id="loading" class="loading-indicator">
+        ⏳ Computing eigenvalues and eigenspaces...
+    </div>
 
     <div id="results"></div>
 
@@ -28,6 +144,7 @@
         <img src="{{ url_for('static', filename='jp.jpg') }}" alt="Professor">
         <h4>Video Reference</h4>
         <p>Math 206 | Eigenvalues and Eigenvectors</p>
+        <p><em>Method: RREF (Row Reduced Echelon Form) for finding eigenspace bases</em></p>
         <a href="https://youtu.be/ElUQ6I8eDj4" target="_blank">Watch Tutorial</a>
     </div>
 
@@ -36,6 +153,7 @@
             <div class="footerBox">
                 <h3>About us</h3>
                 <p>Group 9 | BSCS 2-3</p>
+                <p>Linear Algebra Project | Eigenspace Calculator</p>
             </div>
         </div>
     </footer>
@@ -57,10 +175,39 @@
             }
         }
 
+        function fillExample() {
+            const size = parseInt(document.getElementById('size').value);
+            const inputs = document.querySelectorAll('.matrix-input');
+            
+            // Example matrices matching the previous examples
+            const examples = {
+                2: [[3, 1], [1, 3]],
+                3: [[4, 1, -1], [1, 4, 1], [-1, 1, 4]],
+                4: [[4, 1, 0, 0], [1, 4, 1, 0], [0, 1, 4, 1], [0, 0, 1, 4]],
+                5: [[5, 1, 0, 0, 0], [1, 5, 1, 0, 0], [0, 1, 5, 1, 0], [0, 0, 1, 5, 1], [0, 0, 0, 1, 5]]
+            };
+            
+            const exampleMatrix = examples[size] || examples[3];
+            
+            inputs.forEach((input, index) => {
+                const row = Math.floor(index / size);
+                const col = index % size;
+                input.value = exampleMatrix[row][col] || 0;
+            });
+        }
+
+        function clearMatrix() {
+            const inputs = document.querySelectorAll('.matrix-input');
+            inputs.forEach(input => {
+                input.value = '0';
+            });
+        }
+
         async function calculate() {
             const size = parseInt(document.getElementById('size').value);
             const inputs = document.querySelectorAll('.matrix-input');
             const matrix = [];
+
             for (let i = 0; i < size; i++) {
                 const row = [];
                 for (let j = 0; j < size; j++) {
@@ -69,46 +216,170 @@
                 matrix.push(row);
             }
 
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').innerHTML = '';
+
             try {
-                const response = await fetch('/compute', {
+                // Updated to use the new endpoint
+                const response = await fetch('/compute-eigenspaces', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ matrix })
                 });
 
-                if (!response.ok) throw new Error('Server Error');
-
                 const data = await response.json();
-                if (data.error) throw new Error(data.error);
+                
+                // Hide loading
+                document.getElementById('loading').style.display = 'none';
 
-                displayResults(data.results);
+                if (!response.ok) {
+                    throw new Error(data.error || 'Server error');
+                }
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                displayResults(data);
             } catch (err) {
-                alert("Error: " + err.message);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('results').innerHTML = `
+                    <div style="background-color: #ffebee; color: #c62828; padding: 15px; border-radius: 4px; margin: 15px 0;">
+                        <strong>Error:</strong> ${err.message}
+                    </div>
+                `;
             }
         }
 
-        function displayResults(results) {
+        function formatNumber(num) {
+            // If it's an integer or very close to it, display as integer
+            if (Math.abs(num - Math.round(num)) < 0.0001) {
+                return Math.round(num).toString();
+            }
+            // Otherwise, format to 4 decimal places
+            return num.toFixed(4);
+        }
+
+        function formatMatrix(matrix) {
+            return matrix.map(row => 
+                '[' + row.map(val => formatNumber(val)).join(', ') + ']'
+            ).join('<br>');
+        }
+
+        function formatVector(vector) {
+            return '[' + vector.map(val => formatNumber(val)).join(', ') + ']';
+        }
+
+        function displayResults(data) {
             const div = document.getElementById('results');
-            div.innerHTML = '<h3>Results:</h3>';
             
-            if (!results || results.length === 0) {
-                div.innerHTML += '<p>No results found.</p>';
+            if (data.eigenspaces.length === 0) {
+                div.innerHTML = `
+                    <div class="eigenspace-result">
+                        <h3>No Real Eigenvalues Found</h3>
+                        <p>The matrix ${data.matrix_size}×${data.matrix_size} has only complex eigenvalues.</p>
+                    </div>
+                `;
                 return;
             }
 
-            results.forEach((item, index) => {
-                // Join basis vectors with commas and wrap in brackets
-                let basisHTML = item.basis.map(vec => `[${vec.join(', ')}]`).join(' , ');
+            // Summary section
+            div.innerHTML = `
+                <div class="summary-box">
+                    <h3>Results Summary</h3>
+                    <p><strong>Matrix Size:</strong> ${data.matrix_size}×${data.matrix_size}</p>
+                    <p><strong>Real Eigenvalues Found:</strong> ${data.eigenvalues.length}</p>
+                    <p><strong>Eigenvalues:</strong> ${data.eigenvalues.map((val, idx) => `λ${idx+1}=${formatNumber(val)}`).join(', ')}</p>
+                </div>
+            `;
+
+            // Display each eigenspace
+            data.eigenspaces.forEach((eigenspace, index) => {
+                const eigenspaceDiv = document.createElement('div');
+                eigenspaceDiv.className = 'eigenspace-result';
                 
-                div.innerHTML += `
-                    <div class="result-item">
-                        <strong>Eigenvalue (λ${index + 1}):</strong> ${item.eigenvalue} <br>
-                        <strong>Basis for Eigenspace:</strong> { ${basisHTML} }
-                    </div>`;
+                let html = `
+                    <div class="eigenvalue-title">
+                        <h3>Eigenvalue λ${index + 1} = ${formatNumber(eigenspace.eigenvalue)}</h3>
+                        <p><strong>Geometric Multiplicity:</strong> ${eigenspace.geometric_multiplicity}</p>
+                    </div>
+                `;
+
+                // Display basis vectors
+                if (eigenspace.basis.length > 0) {
+                    html += `<h4>Eigenspace Basis Vectors:</h4>`;
+                    eigenspace.basis.forEach((vector, vecIndex) => {
+                        html += `
+                            <div class="basis-vector-display">
+                                <strong>v${vecIndex + 1}:</strong> ${formatVector(vector)}
+                            </div>
+                        `;
+                    });
+                } else {
+                    html += `<p><em>Trivial eigenspace {0}</em></p>`;
+                }
+
+                // RREF Details (collapsible)
+                html += `
+                    <details>
+                        <summary>Show RREF Computation Steps</summary>
+                        <div class="rref-section">
+                            <h4>Step 1: Compute A - λI</h4>
+                            <div class="matrix-display">
+                                ${formatMatrix(eigenspace.rref_details.A_minus_lambda_I)}
+                            </div>
+                            
+                            <h4>Step 2: Row Reduce to RREF</h4>
+                            <div class="matrix-display">
+                                ${formatMatrix(eigenspace.rref_details.rref)}
+                            </div>
+                            
+                            <p><strong>Pivot Columns:</strong> [${eigenspace.rref_details.pivot_columns.join(', ')}]</p>
+                            <p><strong>Free Variables:</strong> [${eigenspace.rref_details.free_variables.join(', ')}]</p>
+                            
+                            <h4>Verification: Av = λv</h4>
+                `;
+
+                // Verification results
+                if (eigenspace.verification && eigenspace.verification.length > 0) {
+                    eigenspace.verification.forEach((ver, verIndex) => {
+                        html += `
+                            <div class="verification-box">
+                                <strong>For basis vector v${verIndex + 1}:</strong><br>
+                                Av = ${formatVector(ver.Av)}<br>
+                                λv = ${formatVector(ver.lambda_v)}<br>
+                                ${ver.is_correct ? '✅ Correct (Av = λv)' : '❌ Incorrect'}
+                            </div>
+                        `;
+                    });
+                }
+
+                html += `</div></details>`;
+                
+                // How it works explanation
+                html += `
+                    <div style="margin-top: 15px; font-size: 0.9em; color: #666;">
+                        <strong>How it works:</strong> For eigenvalue λ, we solve (A - λI)v = 0 by:
+                        <ol style="margin: 5px 0; padding-left: 20px;">
+                            <li>Form A - λI matrix</li>
+                            <li>Row reduce to RREF</li>
+                            <li>Identify free variables</li>
+                            <li>Construct basis vectors</li>
+                        </ol>
+                    </div>
+                `;
+
+                eigenspaceDiv.innerHTML = html;
+                div.appendChild(eigenspaceDiv);
             });
         }
 
-        window.addEventListener('DOMContentLoaded', createGrid);
+        // Initialize the grid when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            createGrid();
+            fillExample(); // Auto-fill with example for convenience
+        });
     </script>
 </body>
 </html>
