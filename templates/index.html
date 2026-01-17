@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2>Eigen-stuff Calculator</h2>
-    <p>This calculator finds eigenvalues and eigenvectors of a square matrix.</p>
+    <p>This calculator finds eigenvalues and basis vectors of a square matrix.</p>
 
     <p>Select Size (n x n): 
         <select id="size" onchange="createGrid()">
@@ -61,7 +61,6 @@
             const size = parseInt(document.getElementById('size').value);
             const inputs = document.querySelectorAll('.matrix-input');
             const matrix = [];
-
             for (let i = 0; i < size; i++) {
                 const row = [];
                 for (let j = 0; j < size; j++) {
@@ -76,15 +75,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ matrix })
                 });
-
-                if (!response.ok) {
-                    const text = await response.text();
-                    throw new Error(text || 'Server error');
-                }
-
                 const data = await response.json();
                 if (data.error) throw new Error(data.error);
-
                 displayResults(data.results);
             } catch (err) {
                 alert("Error: " + err.message);
@@ -94,16 +86,19 @@
         function displayResults(results) {
             const div = document.getElementById('results');
             div.innerHTML = '<h3>Results:</h3>';
-
+            if (results.length === 0) {
+                div.innerHTML += '<p>No real eigenvalues found.</p>';
+                return;
+            }
             results.forEach((item, index) => {
+                let basisHTML = item.basis.map(vec => `[${vec.join(', ')}]`).join(' , ');
                 div.innerHTML += `
                     <div class="result-item">
                         <strong>Eigenvalue (λ${index + 1}):</strong> ${item.eigenvalue} <br>
-                        <strong>Eigenvector:</strong> [${item.eigenvector.join(', ')}]
+                        <strong>Basis for Eigenspace:</strong> { ${basisHTML} }
                     </div>`;
             });
         }
-
         window.addEventListener('DOMContentLoaded', createGrid);
     </script>
 </body>
