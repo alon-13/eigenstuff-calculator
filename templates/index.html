@@ -10,12 +10,19 @@
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
+            line-height: 1.6;
         }
         
-        h2, h3 {
+        h2 {
             color: #333;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 3px solid #4CAF50;
             padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            color: #444;
+            margin-top: 25px;
         }
         
         .matrix-grid {
@@ -26,103 +33,142 @@
         }
         
         .matrix-input {
-            width: 60px;
-            height: 40px;
+            width: 70px;
+            height: 45px;
             text-align: center;
             font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            background: white;
+        }
+        
+        .matrix-input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
         }
         
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             margin: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
         }
         
         button:hover {
             background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .btn-example {
+            background-color: #2196F3;
+        }
+        
+        .btn-example:hover {
+            background-color: #0b7dda;
+        }
+        
+        .btn-clear {
+            background-color: #f44336;
+        }
+        
+        .btn-clear:hover {
+            background-color: #da190b;
         }
         
         .eigenspace-result {
             background-color: white;
-            border-left: 4px solid #4CAF50;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .eigenvalue-title {
             background-color: #e8f5e8;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
         }
         
         .basis-vector-display {
             background-color: #f9f9f9;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 4px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 6px;
             font-family: 'Courier New', monospace;
+            border-left: 3px solid #2196F3;
         }
         
         .rref-section {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
             padding: 15px;
-            margin: 10px 0;
-            border-radius: 4px;
-            font-size: 14px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
         }
         
         .matrix-display {
             font-family: 'Courier New', monospace;
-            background-color: #fff;
-            padding: 10px;
+            background-color: white;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 4px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
             display: inline-block;
         }
         
         .verification-box {
             background-color: #fff;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 4px;
-            border-left: 3px solid #4CAF50;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
         }
         
         .loading-indicator {
             display: none;
             text-align: center;
-            margin: 20px 0;
-            font-style: italic;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 18px;
             color: #666;
         }
         
         .summary-box {
             background-color: #e8f5e8;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 2px solid #c8e6c9;
         }
         
         details {
-            margin: 10px 0;
+            margin: 15px 0;
         }
         
         summary {
             cursor: pointer;
-            padding: 10px;
+            padding: 12px 15px;
             background-color: #f5f5f5;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: bold;
+            border-left: 4px solid #4CAF50;
         }
         
         summary:hover {
@@ -131,24 +177,33 @@
         
         .reference-card {
             background-color: white;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
+            border-top: 5px solid #4CAF50;
+        }
+        
+        .reference-card h4 {
+            color: #4CAF50;
+            margin-top: 0;
         }
         
         .reference-card img {
-            max-width: 100px;
+            max-width: 120px;
             border-radius: 50%;
             margin-bottom: 15px;
+            border: 4px solid #4CAF50;
         }
         
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             text-align: center;
             color: #666;
             font-size: 14px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
         }
         
         .footerBox {
@@ -158,37 +213,91 @@
         .error-message {
             background-color: #ffebee;
             color: #c62828;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #f44336;
+        }
+        
+        .success-message {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin: 20px 0;
             padding: 15px;
-            border-radius: 4px;
-            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        select {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 2px solid #ddd;
+            font-size: 16px;
+            background: white;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .matrix-input {
+                width: 60px;
+                height: 40px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            button {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h2>Eigen-stuff Calculator</h2>
+    <h2>Eigenstuff Calculator</h2>
     <p>This calculator finds eigenvalues and eigenvectors of a square matrix using the RREF method for eigenspace computation.</p>
 
-    <p>Select Size (n x n): 
-        <select id="size" onchange="createGrid()">
-            <option value="2">2x2</option>
-            <option value="3" selected>3x3</option>
-            <option value="4">4x4</option>
-            <option value="5">5x5</option>
-        </select>
-    </p>
+    <div class="controls">
+        <div>
+            <label><strong>Select Size (n x n):</strong></label><br>
+            <select id="size" onchange="createGrid()">
+                <option value="2">2x2</option>
+                <option value="3" selected>3x3</option>
+                <option value="4">4x4</option>
+                <option value="5">5x5</option>
+            </select>
+        </div>
+        
+        <div>
+            <button onclick="fillExample()" class="btn-example">Fill with Example</button>
+            <button onclick="clearMatrix()" class="btn-clear">Clear Matrix</button>
+            <button onclick="calculate()">Compute Eigenvalues & Eigenspaces</button>
+        </div>
+    </div>
 
     <h3>Enter Matrix:</h3>
     <div id="matrix-container" class="matrix-grid"></div>
     
-    <div>
-        <button onclick="fillExample()">Fill with Example</button>
-        <button onclick="clearMatrix()">Clear</button>
-        <button onclick="calculate()">Compute</button>
-    </div>
-
     <div id="loading" class="loading-indicator">
-        ⏳ Computing eigenvalues and eigenspaces...
+        ⏳ Computing eigenvalues and eigenspaces... This may take a moment.
     </div>
 
     <div id="results"></div>
@@ -197,7 +306,15 @@
         <h4>Video Reference</h4>
         <p>Math 206 | Eigenvalues and Eigenvectors</p>
         <p><em>Method: RREF (Row Reduced Echelon Form) for finding eigenspace bases</em></p>
-        <a href="https://youtu.be/ElUQ6I8eDj4" target="_blank">Watch Tutorial</a>
+        <p><strong>Steps for each eigenvalue λ:</strong></p>
+        <ol style="text-align: left; display: inline-block; margin: 10px auto;">
+            <li>Form A - λI matrix</li>
+            <li>Row reduce to RREF</li>
+            <li>Identify free variables</li>
+            <li>Construct basis vectors</li>
+        </ol>
+        <br>
+        <a href="https://youtu.be/ElUQ6I8eDj4" target="_blank" style="color: #4CAF50; font-weight: bold;">Watch Tutorial Video</a>
     </div>
 
     <footer>
@@ -205,15 +322,16 @@
             <h3>About us</h3>
             <p>Group 9 | BSCS 2-3</p>
             <p>Linear Algebra Project | Eigenspace Calculator</p>
+            <p>Deployed on Render</p>
         </div>
     </footer>
 
     <script>
         function createGrid() {
-            const size = document.getElementById('size').value;
+            const size = parseInt(document.getElementById('size').value);
             const container = document.getElementById('matrix-container');
             container.innerHTML = '';
-            container.style.gridTemplateColumns = `repeat(${size}, 70px)`;
+            container.style.gridTemplateColumns = `repeat(${size}, 75px)`;
 
             for (let i = 0; i < size * size; i++) {
                 const input = document.createElement('input');
@@ -221,6 +339,7 @@
                 input.value = '0';
                 input.step = 'any';
                 input.className = 'matrix-input';
+                input.placeholder = '0';
                 container.appendChild(input);
             }
         }
@@ -271,7 +390,7 @@
             document.getElementById('results').innerHTML = '';
 
             try {
-                // Updated to use the new endpoint
+                // Call the API endpoint
                 const response = await fetch('/compute-eigenspaces', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -284,7 +403,7 @@
                 document.getElementById('loading').style.display = 'none';
 
                 if (!response.ok) {
-                    throw new Error(data.error || 'Server error');
+                    throw new Error(data.error || `Server error (${response.status})`);
                 }
 
                 if (data.error) {
@@ -296,19 +415,22 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('results').innerHTML = `
                     <div class="error-message">
-                        <strong>Error:</strong> ${err.message}
+                        <h3>Error</h3>
+                        <p>${err.message}</p>
+                        <p>Please check your matrix values and try again.</p>
                     </div>
                 `;
+                console.error('Error:', err);
             }
         }
 
         function formatNumber(num) {
             // If it's an integer or very close to it, display as integer
             if (Math.abs(num - Math.round(num)) < 0.0001) {
-                return Math.round(num).toString();
+                return Math.round(num);
             }
             // Otherwise, format to 4 decimal places
-            return num.toFixed(4);
+            return parseFloat(num.toFixed(4));
         }
 
         function formatMatrix(matrix) {
@@ -328,7 +450,8 @@
                 div.innerHTML = `
                     <div class="eigenspace-result">
                         <h3>No Real Eigenvalues Found</h3>
-                        <p>The matrix ${data.matrix_size}×${data.matrix_size} has only complex eigenvalues.</p>
+                        <p>The ${data.matrix_size}×${data.matrix_size} matrix has only complex eigenvalues.</p>
+                        <p><strong>Suggestion:</strong> Try a symmetric matrix (where A = Aᵀ) to guarantee real eigenvalues.</p>
                     </div>
                 `;
                 return;
@@ -340,7 +463,9 @@
                     <h3>Results Summary</h3>
                     <p><strong>Matrix Size:</strong> ${data.matrix_size}×${data.matrix_size}</p>
                     <p><strong>Real Eigenvalues Found:</strong> ${data.eigenvalues.length}</p>
-                    <p><strong>Eigenvalues:</strong> ${data.eigenvalues.map((val, idx) => `λ${idx+1}=${formatNumber(val)}`).join(', ')}</p>
+                    <p><strong>Eigenvalues:</strong> ${data.eigenvalues.map((val, idx) => 
+                        `<span style="background: #e3f2fd; padding: 4px 8px; border-radius: 4px; margin: 0 5px;">λ${idx+1}=${formatNumber(val)}</span>`
+                    ).join(' ')}</p>
                 </div>
             `;
 
@@ -352,7 +477,8 @@
                 let html = `
                     <div class="eigenvalue-title">
                         <h3>Eigenvalue λ${index + 1} = ${formatNumber(eigenspace.eigenvalue)}</h3>
-                        <p><strong>Geometric Multiplicity:</strong> ${eigenspace.geometric_multiplicity}</p>
+                        <p><strong>Geometric Multiplicity:</strong> ${eigenspace.geometric_multiplicity} 
+                        (Dimension of eigenspace)</p>
                     </div>
                 `;
 
@@ -367,13 +493,13 @@
                         `;
                     });
                 } else {
-                    html += `<p><em>Trivial eigenspace {0}</em></p>`;
+                    html += `<p><em>Trivial eigenspace {0} (only the zero vector)</em></p>`;
                 }
 
                 // RREF Details (collapsible)
                 html += `
                     <details>
-                        <summary>Show RREF Computation Steps</summary>
+                        <summary>Show RREF Computation Steps for λ = ${formatNumber(eigenspace.eigenvalue)}</summary>
                         <div class="rref-section">
                             <h4>Step 1: Compute A - λI</h4>
                             <div class="matrix-display">
@@ -387,6 +513,7 @@
                             
                             <p><strong>Pivot Columns:</strong> [${eigenspace.rref_details.pivot_columns.join(', ')}]</p>
                             <p><strong>Free Variables:</strong> [${eigenspace.rref_details.free_variables.join(', ')}]</p>
+                            <p><em>Note: Each free variable gives one basis vector.</em></p>
                             
                             <h4>Verification: Av = λv</h4>
                 `;
@@ -396,30 +523,22 @@
                     eigenspace.verification.forEach((ver, verIndex) => {
                         html += `
                             <div class="verification-box">
-                                <strong>For basis vector v${verIndex + 1}:</strong><br>
-                                Av = ${formatVector(ver.Av)}<br>
-                                λv = ${formatVector(ver.lambda_v)}<br>
-                                ${ver.is_correct ? '✅ Correct (Av = λv)' : '❌ Incorrect'}
+                                <strong>For basis vector v${verIndex + 1}:</strong><br><br>
+                                <strong>Av</strong> = ${formatVector(ver.Av)}<br>
+                                <strong>λv</strong> = ${formatVector(ver.lambda_v)}<br><br>
+                                ${ver.is_correct ? 
+                                    '<span style="color: #4CAF50; font-weight: bold;">✅ Correct (Av = λv)</span>' : 
+                                    '<span style="color: #f44336; font-weight: bold;">❌ Incorrect</span>'
+                                }
                             </div>
                         `;
                     });
+                } else {
+                    html += `<p><em>No basis vectors to verify.</em></p>`;
                 }
 
                 html += `</div></details>`;
                 
-                // How it works explanation
-                html += `
-                    <div style="margin-top: 15px; font-size: 0.9em; color: #666;">
-                        <strong>How it works:</strong> For eigenvalue λ, we solve (A - λI)v = 0 by:
-                        <ol style="margin: 5px 0; padding-left: 20px;">
-                            <li>Form A - λI matrix</li>
-                            <li>Row reduce to RREF</li>
-                            <li>Identify free variables</li>
-                            <li>Construct basis vectors</li>
-                        </ol>
-                    </div>
-                `;
-
                 eigenspaceDiv.innerHTML = html;
                 div.appendChild(eigenspaceDiv);
             });
