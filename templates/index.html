@@ -75,8 +75,12 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ matrix })
                 });
+
+                if (!response.ok) throw new Error('Server Error');
+
                 const data = await response.json();
                 if (data.error) throw new Error(data.error);
+
                 displayResults(data.results);
             } catch (err) {
                 alert("Error: " + err.message);
@@ -86,12 +90,16 @@
         function displayResults(results) {
             const div = document.getElementById('results');
             div.innerHTML = '<h3>Results:</h3>';
-            if (results.length === 0) {
-                div.innerHTML += '<p>No real eigenvalues found.</p>';
+            
+            if (!results || results.length === 0) {
+                div.innerHTML += '<p>No results found.</p>';
                 return;
             }
+
             results.forEach((item, index) => {
+                // Join basis vectors with commas and wrap in brackets
                 let basisHTML = item.basis.map(vec => `[${vec.join(', ')}]`).join(' , ');
+                
                 div.innerHTML += `
                     <div class="result-item">
                         <strong>Eigenvalue (λ${index + 1}):</strong> ${item.eigenvalue} <br>
@@ -99,6 +107,7 @@
                     </div>`;
             });
         }
+
         window.addEventListener('DOMContentLoaded', createGrid);
     </script>
 </body>
