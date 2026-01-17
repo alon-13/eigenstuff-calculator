@@ -59,4 +59,8 @@ Compute Button: Press the blue "Compute" button to send your data to the Python 
 
 Output Section: Results appear below the button in gray boxes, showing the calculated Eigenvalues (λ) and the Basis Vectors for each Eigenspace.
 
-Simple Steps: 1. Enter your matrix values. 2. Click the "Compute" button. 3. Review the results displayed at the bottom.
+Simple Steps: 
+1. Select matrix size (n).
+2. Enter your matrix values.
+3. Click the "Compute" button.
+4. Review the results displayed at the bottom.
