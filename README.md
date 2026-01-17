@@ -3,6 +3,8 @@
 
 # Eigenstuff Calculator 
 
+🔗🌐➡️To access the live version (NO DOWNLOAD REQUIRED): Visit the public URL: https://eigenstuff-calculator.onrender.com (Note: If the site takes a moment to load, the free server is simply "waking up").
+
 ###  Project Overview
 The **Eigenstuff Calculator** is a full-stack web application developed as a specialized Linear Algebra tool to streamline the calculation of eigenvalues and their corresponding eigenspace bases. Designed for academic use, the program solves the characteristic equation $\det(A - \lambda I) = 0$ for any square matrix up to a $5 \times 5$ dimension, providing a user-friendly alternative to tedious manual computations. By integrating a Python-based mathematical engine with a responsive web interface, the application allows students and educators to input matrix values through a dynamic grid and receive instant, accurate results rounded to whole numbers. This tool effectively bridges the gap between complex theoretical concepts and practical computation, making the exploration of linear transformations more accessible.
 
@@ -46,7 +48,7 @@ Execute the command: python app.py
 
 Open the index.html file in your preferred web browser.
 
-To access the live version: Visit the public URL: https://eigenstuff-calculator.onrender.com (Note: If the site takes a moment to load, the free server is simply "waking up").
+🔗🌐➡️To access the live version (NO DOWNLOAD REQUIRED): Visit the public URL: https://eigenstuff-calculator.onrender.com (Note: If the site takes a moment to load, the free server is simply "waking up").
 
 ###  User Interface Guide
 Matrix Input Area: A dynamic grid where you can type your numerical values.
