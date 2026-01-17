@@ -1,38 +1,49 @@
-from flask import Flask, request, jsonify, send_from_directory # Added send_from_directory
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import numpy as np
-import os
 
-app = Flask(__name__, static_folder='.') # Tell Flask to look in the current folder
+app = Flask(__name__)
 CORS(app)
 
-# ADD THIS ROUTE:
 @app.route('/')
 def index():
-    return send_from_directory('.', 'index.html')
+    return render_template('index.html')
 
 @app.route('/compute', methods=['POST'])
 def compute():
     try:
         data = request.json
         matrix_data = data.get('matrix')
-        
-        # Convert to NumPy array
         matrix = np.array(matrix_data, dtype=float)
         
         if matrix.shape[0] != matrix.shape[1]:
             return jsonify({"error": "Matrix must be square"}), 400
         
-        # Calculate Eigenvalues and Eigenvectors
-        # eigenvalues: 1D array
-        # eigenvectors: 2D array where columns are the vectors
         eigenvalues, eigenvectors = np.linalg.eig(matrix)
         
         results = []
         for i in range(len(eigenvalues)):
+            ev = eigenvalues[i]
+            
+            if abs(ev.imag) < 1e-10:
+                ev_formatted = f"{round(ev.real, 4)}"
+            else:
+                sign = "+" if ev.imag > 0 else "-"
+                ev_formatted = f"{round(ev.real, 4)} {sign} {round(abs(ev.imag), 4)}i"
+
+            vec = eigenvectors[:, i]
+            scale_factor = 1
+            for val in vec:
+                if abs(val) > 1e-10:
+                    scale_factor = val
+                    break
+            
+            scaled_vec = vec / scale_factor
+            formatted_vec = [round(v.real, 4) for v in scaled_vec]
+
             results.append({
-                "eigenvalue": round(complex(eigenvalues[i]).real, 4), 
-                "eigenvector": [round(val, 4) for val in eigenvectors[:, i]]
+                "eigenvalue": ev_formatted,
+                "eigenvector": formatted_vec
             })
             
         return jsonify({"results": results})
@@ -41,5 +52,4 @@ def compute():
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
-
+    app.run(debug=True)
